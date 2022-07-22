@@ -1,0 +1,162 @@
+C51 COMPILER V9.60.0.0   IR                                                                07/21/2022 11:53:56 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE IR
+OBJECT MODULE PLACED IN .\Objects\IR.obj
+COMPILER INVOKED BY: F:\ϵͳĬ��\����\51\keil5\C51\BIN\C51.EXE IR.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\
+                    -Listings\IR.lst) TABS(2) OBJECT(.\Objects\IR.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Int1.h"
+   3          #include "Timer1.h"
+   4          unsigned int IR_Time;
+   5          unsigned char IR_State;
+   6          
+   7          unsigned char IR_Data[4];
+   8          unsigned char IR_pData;
+   9          
+  10          unsigned char IR_DataFlag;
+  11          unsigned char IR_RepeatFlag;
+  12          unsigned char IR_Address;
+  13          unsigned char IR_Command;
+  14          
+  15          void IR_Init()
+  16          {
+  17   1        Timer1_Init();
+  18   1        Int1_Init();
+  19   1      }
+  20          
+  21          unsigned char IR_GetDataFlag()
+  22          {
+  23   1        if(IR_DataFlag)
+  24   1        {
+  25   2          IR_DataFlag=0;
+  26   2          return 1;
+  27   2        }
+  28   1        return 0;
+  29   1      }
+  30          
+  31          
+  32          unsigned char IR_GetRepeatFlag()
+  33          {
+  34   1        if(IR_RepeatFlag)
+  35   1        {
+  36   2          IR_RepeatFlag=0;
+  37   2          return 1;
+  38   2        }
+  39   1        return 0;
+  40   1      }
+  41          
+  42          
+  43          unsigned char IR_GetAddress()
+  44          {
+  45   1        return IR_Address;
+  46   1      }
+  47          
+  48          
+  49          unsigned char IR_GetCommand()
+  50          {
+  51   1        return IR_Command;
+  52   1      }
+  53          
+  54          
+C51 COMPILER V9.60.0.0   IR                                                                07/21/2022 11:53:56 PAGE 2   
+
+  55          void Int1_Routine(void) interrupt 2
+  56          {
+  57   1        switch (IR_State)
+  58   1        {
+  59   2          case 0:
+  60   2          {
+  61   3            Timer1_SetCounter(0); 
+  62   3            Timer1_Run(1);      
+  63   3            IR_State=1;
+  64   3            //P0=0x00;
+  65   3            break;
+  66   3          }
+  67   2          case 1:
+  68   2          {
+  69   3            IR_Time=Timer1_GetCounter();  
+  70   3            Timer1_SetCounter(0); 
+  71   3            if(IR_Time>12442-500 && IR_Time<12442+500)//12M--13500--11--12442
+  72   3            {
+  73   4              IR_State=2; 
+  74   4              //P0=0x00;        
+  75   4            }
+  76   3            else 
+  77   3            {
+  78   4              if(IR_Time>10368-500 && IR_Time<10368+500)//12M--11250--11--10368
+  79   4              {
+  80   5                IR_RepeatFlag=1;  
+  81   5                Timer1_Run(0);    
+  82   5                IR_State=0;     
+  83   5              }
+  84   4              else          
+  85   4              {
+  86   5                IR_State=1;     
+  87   5              }
+  88   4            }
+  89   3            break;
+  90   3          }
+  91   2          case 2:
+  92   2          {
+  93   3            IR_Time=Timer1_GetCounter();  //获取上一次中断到此次中断的时间
+  94   3            Timer1_SetCounter(0); //定时计数器清0
+  95   3            if(IR_Time>1032-500 && IR_Time<1032+500)
+  96   3            {
+  97   4              IR_Data[IR_pData/8]&=~(0x01<<(IR_pData%8)); //数据对应位清0
+  98   4              IR_pData++;     //数据位置指针自增
+  99   4              //P0=0x00;
+ 100   4            }
+ 101   3            else 
+ 102   3            {
+ 103   4              if(IR_Time>2074-500 && IR_Time<2074+500)
+ 104   4              {
+ 105   5                IR_Data[IR_pData/8]|=(0x01<<(IR_pData%8));  //数据对应位置1
+ 106   5                IR_pData++;     //数据位置指针自增
+ 107   5                //P0=0x00;
+ 108   5              }
+ 109   4              else          //接收出错
+ 110   4              {
+ 111   5                IR_pData=0;     //数据位置指针清0
+ 112   5                IR_State=1;     //置状态为1
+ 113   5              }
+ 114   4            }
+ 115   3            if(IR_pData>=32)    //如果接收到了32位数据
+ 116   3            {
+C51 COMPILER V9.60.0.0   IR                                                                07/21/2022 11:53:56 PAGE 3   
+
+ 117   4              IR_pData=0;     //数据位置指针清0
+ 118   4              if((IR_Data[0]==~IR_Data[1]) && (IR_Data[2]==~IR_Data[3]))  //数据验证
+ 119   4              {
+ 120   5                IR_Address=IR_Data[0];  //转存数据
+ 121   5                IR_Command=IR_Data[2];
+ 122   5                IR_DataFlag=1;  //置收到连发帧标志位为1
+ 123   5                //P0=0x00;
+ 124   5              }
+ 125   4              Timer1_Run(0);    //定时器停止
+ 126   4              IR_State=0;     //置状态为0
+ 127   4            }
+ 128   3            break;
+ 129   3          }
+ 130   2          
+ 131   2          default:
+ 132   2            break;
+ 133   2        }
+ 134   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    369    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     12    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,89 @@
+C51 COMPILER V9.60.0.0   LINEPATORL                                                        07/21/2022 11:53:55 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LINEPATORL
+OBJECT MODULE PLACED IN .\Objects\Linepatorl.obj
+COMPILER INVOKED BY: F:\ϵͳĬ��\����\51\keil5\C51\BIN\C51.EXE Linepatorl.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND 
+                    -PRINT(.\Listings\Linepatorl.lst) TABS(2) OBJECT(.\Objects\Linepatorl.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "move.h"
+   3          #include "IR.h"
+   4          sbit liftir=P3^7;
+   5          sbit rightir=P3^6;
+   6          unsigned char Linepatorl()
+   7          {
+   8   1        //static unsigned int count=0;
+   9   1        static unsigned char command;
+  10   1        unsigned char num=1;
+  11   1        static unsigned char key=0;
+  12   1        if(IR_GetDataFlag())
+  13   1        {
+  14   2          command=IR_GetCommand();
+  15   2          if(command==stop)
+  16   2          {
+  17   3            
+  18   3            if(key==1)
+  19   3            {
+  20   4              
+  21   4              move(5,0);
+  22   4              key=0;
+  23   4            }
+  24   3            else 
+  25   3            {
+  26   4              key=1;
+  27   4            }
+  28   3          }
+  29   2          if(command==EQ)
+  30   2          {
+  31   3            num=0;
+  32   3            key=0;//退出状态重置
+  33   3          }
+  34   2        }
+  35   1        if(key==1)
+  36   1        {
+  37   2          if(liftir==1&&rightir==1)//1（黑线）代表红外线没反射回来，0（白线）代表反射回来
+             -了
+  38   2          {
+  39   3              move(1,60);
+  40   3          }
+  41   2          else
+  42   2          {
+  43   3            if(liftir==1)//右偏10
+  44   3            {
+  45   4              move(3,50);
+  46   4            }
+  47   3            if(rightir==1)//左偏01
+  48   3            {
+  49   4              move(4,50);
+  50   4            }
+  51   3          }
+  52   2          if(liftir==0&&rightir==0)
+  53   2          {
+C51 COMPILER V9.60.0.0   LINEPATORL                                                        07/21/2022 11:53:55 PAGE 2   
+
+  54   3            move(1,60);
+  55   3          }
+  56   2        }
+  57   1        else
+  58   1        {
+  59   2          move(5,0);
+  60   2        }
+  61   1        return num;
+  62   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    109    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

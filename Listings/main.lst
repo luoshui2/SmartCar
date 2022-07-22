@@ -1,0 +1,172 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              07/21/2022 11:58:43 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: F:\ϵͳĬ��\����\51\keil5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(
+                    -.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include <INTRINS.H>
+   3          #include "move.h"
+   4          #include "avoid.h"
+   5          #include "Delay.h"
+   6          #include "LED.h"
+   7          #include "Linepatorl.h"
+   8          #include "IR.h"
+   9          #include "control.h"
+  10          #include "Int0.h"
+  11          #include "Buzzer.h"
+  12          unsigned int start;
+  13          unsigned char mode;
+  14          unsigned char command;
+  15          sbit stopkey=P3^2;
+  16          unsigned char key_main;
+  17          unsigned char num=1;//返回值
+  18          void main()
+  19          {
+  20   1        Int0_Init();
+  21   1        IR_Init();
+  22   1        while(1)
+  23   1        {   
+  24   2          if(key_main==0)
+  25   2          {
+  26   3            switch(start)
+  27   3            {
+  28   4              case 0:
+  29   4              {
+  30   5                
+  31   5                move(5,0);
+  32   5                break;
+  33   5              }
+  34   4              case 1:
+  35   4              {
+  36   5                LED(0);//退出某种模式时清为0模式
+  37   5                if(IR_GetDataFlag() || IR_GetRepeatFlag())
+  38   5                {
+  39   6                  command=IR_GetCommand();
+  40   6                  switch(command)
+  41   6                  {
+  42   7                    case type1:
+  43   7                    {
+  44   8                      LED(1);
+  45   8                      Buzzer(3);
+  46   8                      key_main=1;
+  47   8                      break;
+  48   8                    }
+  49   7                    case type2:
+  50   7                    {
+  51   8                      LED(2);
+  52   8                      Buzzer(3);
+  53   8                      key_main=2;
+  54   8                      break;
+C51 COMPILER V9.60.0.0   MAIN                                                              07/21/2022 11:58:43 PAGE 2   
+
+  55   8                    }
+  56   7                    case type3:
+  57   7                    {
+  58   8                      LED(3);
+  59   8                      Buzzer(3);
+  60   8                      key_main=3;
+  61   8                      break;
+  62   8                    }
+  63   7                    case type4:
+  64   7                    {
+  65   8                      LED(4);
+  66   8                      Buzzer(3);
+  67   8                      key_main=4;
+  68   8                      break;
+  69   8                    }
+  70   7                    default:
+  71   7                      break;
+  72   7                  }   
+  73   6                }
+  74   5                break;
+  75   5              }
+  76   4              default:
+  77   4                break;
+  78   4              }
+  79   3          }
+  80   2          else
+  81   2          {
+  82   3            if(key_main==1)
+  83   3            {
+  84   4              if(num==0)//必须先判断返回值是否为退出
+  85   4              {
+  86   5                key_main=0;
+  87   5                move(5,0);
+  88   5              }
+  89   4              num=control();
+  90   4            }
+  91   3            if(key_main==2)
+  92   3            {
+  93   4              if(num==0)//必须先判断返回值是否为退出
+  94   4              {
+  95   5                key_main=0;
+  96   5                move(5,0);
+  97   5              }
+  98   4              num=avoid();    
+  99   4            }
+ 100   3            if(key_main==3)
+ 101   3            {
+ 102   4              if(num==0)//必须先判断返回值是否为退出
+ 103   4              {
+ 104   5                key_main=0;
+ 105   5                move(5,0);
+ 106   5              }
+ 107   4              num=Linepatorl();
+ 108   4            }
+ 109   3            if(key_main==4)
+ 110   3            { 
+ 111   4              num=follow();
+*** WARNING C206 IN LINE 111 OF main.c: 'follow': missing function-prototype
+ 112   4              if(num==0)//必须后判断返回值是否为退出
+ 113   4              {
+ 114   5                key_main=0;
+ 115   5                move(5,0);
+C51 COMPILER V9.60.0.0   MAIN                                                              07/21/2022 11:58:43 PAGE 3   
+
+ 116   5              }
+ 117   4            }
+ 118   3          }
+ 119   2          
+ 120   2        }
+ 121   1      }
+ 122          void Int0_Routine() interrupt 0
+ 123          {
+ 124   1        if(stopkey==0)
+ 125   1        {
+ 126   2          Delay(20);
+ 127   2          while(!stopkey) ;
+ 128   2          Delay(20);
+ 129   2          if(start==0)
+ 130   2          {
+ 131   3            LED(0);
+ 132   3            Buzzer(3);
+ 133   3            start=1;
+ 134   3            key_main=0;
+ 135   3          }
+ 136   2          else
+ 137   2          {
+ 138   3            P0=0xFF;
+ 139   3            start=0;
+ 140   3            key_main=0;//停下来
+ 141   3          }
+ 142   2        }
+ 143   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    356    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,35 @@
+C51 COMPILER V9.54   DELAY10US                                                             07/03/2022 11:52:15 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE DELAY10US
+OBJECT MODULE PLACED IN .\Objects\Delay10us.obj
+COMPILER INVOKED BY: D:\51\keil5\C51\BIN\C51.EXE Delay10us.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\Delay10us.lst) TABS(2) OBJECT(.\Objects\Delay10us.obj)
+
+line level    source
+
+   1          void Delay10us(unsigned char x) 
+   2          {
+   3   1        unsigned char i;
+   4   1      
+   5   1        while(x)
+   6   1        {
+   7   2          i = 2;
+   8   2          while (--i);
+   9   2          x--;
+  10   2        }
+  11   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     11    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

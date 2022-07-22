@@ -1,0 +1,52 @@
+C51 COMPILER V9.54   NEWTIMER1                                                             07/02/2022 16:31:50 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE NEWTIMER1
+OBJECT MODULE PLACED IN .\Objects\newTimer1.obj
+COMPILER INVOKED BY: D:\51\keil5\C51\BIN\C51.EXE newTimer1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\newTimer1.lst) TABS(2) OBJECT(.\Objects\newTimer1.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          void newTimer1_Init()//定时器1
+   3          {
+   4   1        TMOD &= 0x0F;   //外部中断
+   5   1        TMOD |= 0x10;   
+   6   1        TL1 = 0;    
+   7   1        TH1 = 0;    
+   8   1        TF1 = 0;    
+   9   1        TR1 = 0;    
+  10   1      }
+  11          
+  12          void newTimer1_SetCounter(unsigned int Value)
+  13          {
+  14   1        TH1=Value/256;
+  15   1        TL1=Value%256;
+  16   1      }
+  17          
+  18          unsigned int newTimer1_GetCounter()
+  19          {
+  20   1        return (TH1<<8)|TL1;
+  21   1      }
+  22          
+  23          
+  24          void newTimer1_Run(unsigned char Flag)
+  25          {
+  26   1        TR1=Flag;
+  27   1      }
+  28          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     42    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

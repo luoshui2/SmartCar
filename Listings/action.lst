@@ -1,0 +1,117 @@
+C51 COMPILER V9.54   ACTION                                                                06/28/2022 20:41:58 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE ACTION
+OBJECT MODULE PLACED IN .\Objects\action.obj
+COMPILER INVOKED BY: D:\51\keil5\C51\BIN\C51.EXE action.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\a
+                    -ction.lst) TABS(2) OBJECT(.\Objects\action.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include <INTRINS.H>
+   3          #include "Delay.h"
+   4          
+   5          unsigned int count;
+   6          void action(unsigned char x,unsigned char dutycycle)
+   7          {
+   8   1        switch(x)
+   9   1        {
+  10   2          case 'U':
+  11   2          {
+  12   3            Delay(20);
+  13   3            while(!P3_7) ;
+  14   3            Delay(20);
+  15   3            IN1=1;//前进
+*** ERROR C202 IN LINE 15 OF action.c: 'IN1': undefined identifier
+  16   3            IN2=0;
+*** ERROR C202 IN LINE 16 OF action.c: 'IN2': undefined identifier
+  17   3            IN3=1;
+*** ERROR C202 IN LINE 17 OF action.c: 'IN3': undefined identifier
+  18   3            IN4=0;
+*** ERROR C202 IN LINE 18 OF action.c: 'IN4': undefined identifier
+  19   3            Delay(dutycycle);
+  20   3            break;
+  21   3          }
+  22   2            
+  23   2          case 'B':
+  24   2          {
+  25   3            Delay(20);
+  26   3            while(!P3_7) ;
+  27   3            Delay(20);
+  28   3            IN1=0;//后退
+*** ERROR C202 IN LINE 28 OF action.c: 'IN1': undefined identifier
+  29   3            IN2=1;
+*** ERROR C202 IN LINE 29 OF action.c: 'IN2': undefined identifier
+  30   3            IN3=0;
+*** ERROR C202 IN LINE 30 OF action.c: 'IN3': undefined identifier
+  31   3            IN4=1;
+*** ERROR C202 IN LINE 31 OF action.c: 'IN4': undefined identifier
+  32   3            Delay(dutycycle);
+  33   3            break;
+  34   3          }
+  35   2          case 'L':
+  36   2          {
+  37   3            Delay(20);
+  38   3            while(!P3_7) ;
+  39   3            Delay(20);
+  40   3            IN1=0;//左转
+*** ERROR C202 IN LINE 40 OF action.c: 'IN1': undefined identifier
+  41   3            IN2=1;
+*** ERROR C202 IN LINE 41 OF action.c: 'IN2': undefined identifier
+  42   3            IN3=1;
+*** ERROR C202 IN LINE 42 OF action.c: 'IN3': undefined identifier
+  43   3            IN4=0;
+C51 COMPILER V9.54   ACTION                                                                06/28/2022 20:41:58 PAGE 2   
+
+*** ERROR C202 IN LINE 43 OF action.c: 'IN4': undefined identifier
+  44   3            Delay(dutycycle);
+  45   3            break;
+  46   3          }
+  47   2            
+  48   2          case 'R':
+  49   2          {
+  50   3            Delay(20);
+  51   3            while(!P3_7) ;
+  52   3            Delay(20);
+  53   3            IN1=1;//右转
+*** ERROR C202 IN LINE 53 OF action.c: 'IN1': undefined identifier
+  54   3            IN2=0;
+*** ERROR C202 IN LINE 54 OF action.c: 'IN2': undefined identifier
+  55   3            IN3=0;
+*** ERROR C202 IN LINE 55 OF action.c: 'IN3': undefined identifier
+  56   3            IN4=1;
+*** ERROR C202 IN LINE 56 OF action.c: 'IN4': undefined identifier
+  57   3            Delay(dutycycle);
+  58   3            break;
+  59   3          }
+  60   2          case 'S':
+  61   2          {
+  62   3            Delay(20);
+  63   3            while(!P3_7) ;
+  64   3            Delay(20);
+  65   3            IN1=0;//停止
+*** ERROR C202 IN LINE 65 OF action.c: 'IN1': undefined identifier
+  66   3            IN2=0;
+*** ERROR C202 IN LINE 66 OF action.c: 'IN2': undefined identifier
+  67   3            IN3=0;
+*** ERROR C202 IN LINE 67 OF action.c: 'IN3': undefined identifier
+  68   3            IN4=0;
+*** ERROR C202 IN LINE 68 OF action.c: 'IN4': undefined identifier
+  69   3            break;
+  70   3          } 
+  71   2          default:
+  72   2            break;
+  73   2        }
+  74   1        IN1=0;//停止
+*** ERROR C202 IN LINE 74 OF action.c: 'IN1': undefined identifier
+  75   1        IN2=0;
+*** ERROR C202 IN LINE 75 OF action.c: 'IN2': undefined identifier
+  76   1        IN3=0;
+*** ERROR C202 IN LINE 76 OF action.c: 'IN3': undefined identifier
+  77   1        IN4=0;
+*** ERROR C202 IN LINE 77 OF action.c: 'IN4': undefined identifier
+  78   1        Delay(100-dutycycle);
+  79   1      }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  24 ERROR(S)

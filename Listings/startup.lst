@@ -1,0 +1,36 @@
+C51 COMPILER V9.54   STARTUP                                                               06/28/2022 23:15:42 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE STARTUP
+OBJECT MODULE PLACED IN .\Objects\startup.obj
+COMPILER INVOKED BY: D:\51\keil5\C51\BIN\C51.EXE startup.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -startup.lst) TABS(2) OBJECT(.\Objects\startup.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay.h"
+   3          void startup()
+   4          {
+   5   1        /*unsigned char startbutton;
+   6   1        startbutton=P3_2;*/
+   7   1          while(P3_2) ;
+   8   1          Delay(20);
+   9   1          while(!P3_2) ;
+  10   1          Delay(20);
+  11   1        
+  12   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     20    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

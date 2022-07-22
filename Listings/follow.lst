@@ -1,0 +1,128 @@
+C51 COMPILER V9.60.0.0   FOLLOW                                                            07/21/2022 11:53:55 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE FOLLOW
+OBJECT MODULE PLACED IN .\Objects\follow.obj
+COMPILER INVOKED BY: F:\ϵͳĬ��\����\51\keil5\C51\BIN\C51.EXE follow.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRIN
+                    -T(.\Listings\follow.lst) TABS(2) OBJECT(.\Objects\follow.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay10us.h"
+   3          #include "IR.h"
+   4          #include "move.h"
+   5          #include "LED.h"
+   6          #include "Timer2.h"
+   7          sbit Trig=P2^1;
+   8          sbit Echo=P2^0;
+   9          sbit IN1=P1^2;
+  10          sbit IN2=P1^3;
+  11          sbit IN3=P1^4;
+  12          sbit IN4=P1^5;
+  13          sbit liftavoid=P3^4;
+  14          sbit rightavoid=P3^5;
+  15          unsigned char follow()
+  16          {
+  17   1        unsigned char num=1;
+  18   1        static unsigned char key=1;
+  19   1        static unsigned char command;
+  20   1        unsigned int time;
+  21   1        unsigned int S;
+  22   1        Timer2_Init();
+  23   1        if(IR_GetDataFlag())
+  24   1        {
+  25   2          command=IR_GetCommand();
+  26   2          if(command==stop)
+  27   2          {
+  28   3            if(key==1)
+  29   3            {
+  30   4              key=0;
+  31   4              move(5,0);
+  32   4            }
+  33   3            else key=1;
+  34   3          }
+  35   2          if(command==EQ)
+  36   2          {
+  37   3            num=0;
+  38   3            key=1;//退出状态重置
+  39   3          }
+  40   2        }
+  41   1        else
+  42   1        {
+  43   2          if(key==1)
+  44   2          {
+  45   3            Trig=1;
+  46   3            Delay10us(2);
+  47   3            Trig=0;
+  48   3            while(!Echo) ;
+  49   3            TR2=1;//定时器2启动
+  50   3            while(Echo) ;
+  51   3            TR2=0;
+  52   3            time=TH2*256+TL2;
+  53   3            TH2=0;
+  54   3            TL2=0;
+C51 COMPILER V9.60.0.0   FOLLOW                                                            07/21/2022 11:53:55 PAGE 2   
+
+  55   3            S=(time*1.7)/100;//单位为cm
+  56   3            if(S>23&&S<400)
+  57   3            {
+  58   4              //LED(1);
+  59   4              IN1=1;//前进用不了move函数
+  60   4              IN2=0;
+  61   4              IN3=1;
+  62   4              IN4=0;
+  63   4            }
+  64   3            else
+  65   3            {
+  66   4              if(S>0&&S<13)
+  67   4              {
+  68   5                //LED(2);
+  69   5                IN1=0;//后退
+  70   5                IN2=1;
+  71   5                IN3=0;
+  72   5                IN4=1;
+  73   5              }
+  74   4              if(S>13&&S<23)
+  75   4              {
+  76   5                //LED(3);
+  77   5                move(5,0);//停止
+  78   5              }
+  79   4            }
+  80   3            if(liftavoid==0&&rightavoid==1)//左有杂物要右转
+  81   3            {
+  82   4              IN1=1;//右转
+  83   4              IN2=0;
+  84   4              IN3=0;
+  85   4              IN4=1;
+  86   4            }
+  87   3            if(liftavoid==1&&rightavoid==0) //右有杂物要左转
+  88   3            {
+  89   4              IN1=0;//左转
+  90   4              IN2=1;
+  91   4              IN3=1;
+  92   4              IN4=0;
+  93   4            }
+  94   3            
+  95   3          }
+  96   2          else
+  97   2          {
+  98   3            move(5,0);
+  99   3          }
+ 100   2        }
+ 101   1        return num; 
+ 102   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    252    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
