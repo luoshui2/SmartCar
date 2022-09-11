@@ -1,0 +1,21 @@
+".\Objects\main.obj",
+".\Objects\move.obj",
+".\Objects\Delay.obj",
+".\Objects\avoid.obj",
+".\Objects\LED.obj",
+".\Objects\Linepatorl.obj",
+".\Objects\control.obj",
+".\Objects\follow.obj",
+".\Objects\Int1.obj",
+".\Objects\IR.obj",
+".\Objects\Timer1.obj",
+".\Objects\Int0.obj",
+".\Objects\Buzzer.obj",
+".\Objects\Delay10us.obj",
+".\Objects\Timer2.obj",
+".\Objects\oled.obj",
+".\Objects\Screen.obj",
+".\Objects\measure.obj" 
+TO ".\Objects\Smartcar" 
+PRINT(".\Listings\Smartcar.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

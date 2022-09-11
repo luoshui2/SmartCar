@@ -1,0 +1,161 @@
+C51 COMPILER V9.54   SCREEN                                                                09/03/2022 14:13:44 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE SCREEN
+OBJECT MODULE PLACED IN .\Objects\Screen.obj
+COMPILER INVOKED BY: D:\51\keil5\C51\BIN\C51.EXE Screen.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\S
+                    -creen.lst) TABS(2) OBJECT(.\Objects\Screen.obj)
+
+line level    source
+
+   1          #include "oled.h"
+   2          void screen(unsigned char keynum)
+   3          {
+   4   1        switch(keynum)
+   5   1        {
+   6   2          case 0:
+   7   2          {
+   8   3            OLED_Clear();
+   9   3            OLED_ShowCHinese(0,0,0);//队
+  10   3            OLED_ShowCHinese(18,0,1);//伍
+  11   3            OLED_ShowChar(36,0,':',16);//：
+  12   3            OLED_ShowCHinese(54,0,2);//不
+  13   3            OLED_ShowCHinese(72,0,3);//曾
+  14   3            OLED_ShowCHinese(90,0,4);//失
+  15   3            OLED_ShowCHinese(108,0,5);//语
+  16   3            
+  17   3            OLED_ShowCHinese(0,3,6);//模
+  18   3            OLED_ShowCHinese(18,3,7);//式
+  19   3            OLED_ShowChar(36,3,':',16);//：
+  20   3            OLED_ShowCHinese(54,3,19);//未
+  21   3            OLED_ShowCHinese(72,3,20);//选
+  22   3            OLED_ShowCHinese(90,3,21);//择
+  23   3            break;
+  24   3          }
+  25   2          case 1:
+  26   2          {
+  27   3            OLED_Clear();
+  28   3            OLED_ShowCHinese(0,0,0);//队
+  29   3            OLED_ShowCHinese(18,0,1);//伍
+  30   3            OLED_ShowChar(36,0,':',16);//：
+  31   3            OLED_ShowCHinese(54,0,2);//不
+  32   3            OLED_ShowCHinese(72,0,3);//曾
+  33   3            OLED_ShowCHinese(90,0,4);//失
+  34   3            OLED_ShowCHinese(108,0,5);//语
+  35   3            
+  36   3            OLED_ShowCHinese(0,3,6);//模
+  37   3            OLED_ShowCHinese(18,3,7);//式
+  38   3            OLED_ShowChar(36,3,':',16);//：
+  39   3            OLED_ShowCHinese(54,3,11);//手
+  40   3            OLED_ShowCHinese(72,3,12);//动
+  41   3            break;
+  42   3          }
+  43   2            
+  44   2          case 2:
+  45   2          {
+  46   3            OLED_Clear();
+  47   3            OLED_ShowCHinese(0,0,0);//队
+  48   3            OLED_ShowCHinese(18,0,1);//伍
+  49   3            OLED_ShowChar(36,0,':',16);//：
+  50   3            OLED_ShowCHinese(54,0,2);//不
+  51   3            OLED_ShowCHinese(72,0,3);//曾
+  52   3            OLED_ShowCHinese(90,0,4);//失
+  53   3            OLED_ShowCHinese(108,0,5);//语
+  54   3            
+C51 COMPILER V9.54   SCREEN                                                                09/03/2022 14:13:44 PAGE 2   
+
+  55   3            OLED_ShowCHinese(0,3,6);//模
+  56   3            OLED_ShowCHinese(18,3,7);//式
+  57   3            OLED_ShowChar(36,3,':',16);//：
+  58   3            OLED_ShowCHinese(54,3,15);//红
+  59   3            OLED_ShowCHinese(72,3,16);//外
+  60   3            OLED_ShowCHinese(90,3,13);//避
+  61   3            OLED_ShowCHinese(108,3,14);//障
+  62   3            break;
+  63   3          }
+  64   2          case 3:
+  65   2          {
+  66   3            OLED_Clear();
+  67   3            OLED_ShowCHinese(0,0,0);//队
+  68   3            OLED_ShowCHinese(18,0,1);//伍
+  69   3            OLED_ShowChar(36,0,':',16);//：
+  70   3            OLED_ShowCHinese(54,0,2);//不
+  71   3            OLED_ShowCHinese(72,0,3);//曾
+  72   3            OLED_ShowCHinese(90,0,4);//失
+  73   3            OLED_ShowCHinese(108,0,5);//语
+  74   3            
+  75   3            OLED_ShowCHinese(0,3,6);//模
+  76   3            OLED_ShowCHinese(18,3,7);//式
+  77   3            OLED_ShowChar(36,3,':',16);//：
+  78   3            OLED_ShowCHinese(54,3,15);//红
+  79   3            OLED_ShowCHinese(72,3,16);//外
+  80   3            OLED_ShowCHinese(90,3,17);//巡
+  81   3            OLED_ShowCHinese(108,3,18);//线
+  82   3            break;
+  83   3          }
+  84   2            
+  85   2          case 4:
+  86   2          {
+  87   3            OLED_Clear();
+  88   3            OLED_ShowCHinese(0,0,0);//队
+  89   3            OLED_ShowCHinese(18,0,1);//伍
+  90   3            OLED_ShowChar(36,0,':',16);//：
+  91   3            OLED_ShowCHinese(54,0,2);//不
+  92   3            OLED_ShowCHinese(72,0,3);//曾
+  93   3            OLED_ShowCHinese(90,0,4);//失
+  94   3            OLED_ShowCHinese(108,0,5);//语
+  95   3            
+  96   3            OLED_ShowCHinese(0,3,6);//模
+  97   3            OLED_ShowCHinese(18,3,7);//式
+  98   3            OLED_ShowChar(36,3,':',16);//：
+  99   3            OLED_ShowCHinese(54,3,22);//测
+ 100   3            OLED_ShowCHinese(72,3,23);//距
+ 101   3            
+ 102   3            
+ 103   3            break;
+ 104   3          }
+ 105   2          
+ 106   2          case 5:
+ 107   2          {
+ 108   3            OLED_Clear();
+ 109   3            OLED_ShowCHinese(0,0,0);//队
+ 110   3            OLED_ShowCHinese(18,0,1);//伍
+ 111   3            OLED_ShowChar(36,0,':',16);//：
+ 112   3            OLED_ShowCHinese(54,0,2);//不
+ 113   3            OLED_ShowCHinese(72,0,3);//曾
+ 114   3            OLED_ShowCHinese(90,0,4);//失
+ 115   3            OLED_ShowCHinese(108,0,5);//语
+ 116   3            
+C51 COMPILER V9.54   SCREEN                                                                09/03/2022 14:13:44 PAGE 3   
+
+ 117   3            OLED_ShowCHinese(0,3,6);//模
+ 118   3            OLED_ShowCHinese(18,3,7);//式
+ 119   3            OLED_ShowChar(36,3,':',16);//：
+ 120   3            OLED_ShowCHinese(54,3,8);//测
+ 121   3            OLED_ShowCHinese(72,3,9);//距
+ 122   3            
+ 123   3            OLED_ShowCHinese(0,6,9);//距
+ 124   3            OLED_ShowCHinese(18,6,10);//离
+ 125   3            OLED_ShowChar(36,6,':',16);//：
+ 126   3        //OLED_ShowNum(54,6,666,3,16);//数字
+ 127   3            
+ 128   3            break;
+ 129   3          }
+ 130   2          default:
+ 131   2            break;
+ 132   2        }
+ 133   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    803    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,66 @@
+C51 COMPILER V9.54   MEASURE                                                               09/03/2022 14:13:45 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MEASURE
+OBJECT MODULE PLACED IN .\Objects\measure.obj
+COMPILER INVOKED BY: D:\51\keil5\C51\BIN\C51.EXE measure.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -measure.lst) TABS(2) OBJECT(.\Objects\measure.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay10us.h"
+   3          #include "IR.h"
+   4          #include "Timer2.h"
+   5          #include "oled.h"
+   6          sbit Trig=P2^1;
+   7          sbit Echo=P2^0;
+   8          sbit liftavoid=P3^4;
+   9          sbit rightavoid=P3^5;
+  10          unsigned char measure()
+  11          {
+  12   1        unsigned char num=1;
+  13   1        static unsigned char command;
+  14   1        unsigned int time;
+  15   1        unsigned int S;
+  16   1        Timer2_Init();
+  17   1        if(IR_GetDataFlag())
+  18   1        {
+  19   2          command=IR_GetCommand();
+  20   2          if(command==EQ)
+  21   2          {
+  22   3            num=0;
+  23   3            //退出状态重置
+  24   3          }
+  25   2        }
+  26   1        else
+  27   1        {
+  28   2            Trig=1;
+  29   2            Delay10us(2);
+  30   2            Trig=0;
+  31   2            while(!Echo) ;
+  32   2            TR2=1;//定时器2启动
+  33   2            while(Echo) ;
+  34   2            TR2=0;
+  35   2            time=TH2*256+TL2;
+  36   2            TH2=0;
+  37   2            TL2=0;
+  38   2            S=(time*1.7)/100;//单位为cm 
+  39   2            OLED_ShowNum(54,6,S,2,16);
+  40   2        }
+  41   1        return num; 
+  42   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    116    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

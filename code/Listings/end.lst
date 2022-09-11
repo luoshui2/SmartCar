@@ -1,0 +1,40 @@
+C51 COMPILER V9.54   END                                                                   06/28/2022 23:15:42 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE END
+OBJECT MODULE PLACED IN .\Objects\end.obj
+COMPILER INVOKED BY: D:\51\keil5\C51\BIN\C51.EXE end.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\end.
+                    -lst) TABS(2) OBJECT(.\Objects\end.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay.h"
+   3          unsigned int end()
+   4          {
+   5   1        
+   6   1        unsigned int endbutton=1;
+   7   1        if(!P3_2)
+   8   1        {
+   9   2          while(P3_2) ;
+  10   2          Delay(20);
+  11   2          while(!P3_2) ;
+  12   2          Delay(20);
+  13   2          endbutton=0;
+  14   2        }
+  15   1        return endbutton;
+  16   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     39    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

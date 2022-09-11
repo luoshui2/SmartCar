@@ -2,7 +2,6 @@
 #include "Delay10us.h"
 #include "IR.h"
 #include "move.h"
-#include "LED.h"
 #include "Timer2.h"
 sbit Trig=P2^1;
 sbit Echo=P2^0;
@@ -60,6 +59,7 @@ unsigned char follow()
 				IN2=0;
 				IN3=1;
 				IN4=0;
+				//move(1,70);
 			}
 			else
 			{

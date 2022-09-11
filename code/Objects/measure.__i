@@ -1,0 +1,1 @@
+"measure.c" OPTIMIZE (8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\measure.lst) TABS (2) OBJECT(.\Objects\measure.obj)

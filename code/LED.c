@@ -59,6 +59,17 @@ void LED(unsigned int number)
 			P0_6=0;
 			break;
 		}	
+		case 5://模式4
+		{
+			P0=0xFF;
+			
+			P0_1=0;
+			P0_2=0;
+			P0_4=0;
+			P0_5=0;
+			P0_7=0;
+			break;
+		}	
 		default:
 			break;
 	}

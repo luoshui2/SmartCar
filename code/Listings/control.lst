@@ -1,0 +1,81 @@
+C51 COMPILER V9.54   CONTROL                                                               09/03/2022 14:13:44 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE CONTROL
+OBJECT MODULE PLACED IN .\Objects\control.obj
+COMPILER INVOKED BY: D:\51\keil5\C51\BIN\C51.EXE control.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -control.lst) TABS(2) OBJECT(.\Objects\control.obj)
+
+line level    source
+
+   1          #include "IR.h"
+   2          #include "move.h"
+   3          unsigned char control()
+   4          {
+   5   1        unsigned char num=1;
+   6   1        unsigned char command;
+   7   1        static unsigned char key=5;
+   8   1        if(IR_GetDataFlag())
+   9   1        {
+  10   2          command=IR_GetCommand();
+  11   2          switch(command)
+  12   2          {
+  13   3            case up:
+  14   3            {
+  15   4              key=1;
+  16   4              break;
+  17   4            }
+  18   3            case back:
+  19   3            {
+  20   4              key=2;
+  21   4              break;
+  22   4            }
+  23   3            case left:
+  24   3            {
+  25   4              key=3;
+  26   4              break;
+  27   4            }
+  28   3            case right:
+  29   3            {
+  30   4              key=4;
+  31   4              break;
+  32   4            }
+  33   3            case stop:
+  34   3            {
+  35   4              key=5;
+  36   4              break;
+  37   4            }
+  38   3            case EQ:
+  39   3            {
+  40   4              num=0;
+  41   4              //move(5,0);
+  42   4              key=5;//退出模式清0;
+  43   4              break;
+  44   4            }
+  45   3            default:
+  46   3              break;
+  47   3          }
+  48   2        }
+  49   1        if(key==1)  {move(1,70);}
+  50   1        if(key==2)  {move(2,70);}
+  51   1        if(key==3)  {move(3,50);}
+  52   1        if(key==4)  {move(4,50);}
+  53   1        if(key==5)  {move(5,0);}
+  54   1        return num;
+C51 COMPILER V9.54   CONTROL                                                               09/03/2022 14:13:44 PAGE 2   
+
+  55   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    127    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

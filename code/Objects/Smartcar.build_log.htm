@@ -1,0 +1,57 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.14.1
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 ÂÞÎ¬, 1, LIC=9W1BF-67RVF-B2SLG-VTEM7-6HJEM-8G89C
+ 
+Tool Versions:
+Toolchain:       PK51 Prof. Developers Kit  Version: 9.54
+Toolchain Path:  D:\51\keil5\C51\BIN
+C Compiler:      C51.exe V9.54
+Assembler:       A51.exe V8.02c
+Linker/Locator:  BL51.exe V6.22
+Library Manager: LIB51.exe V4.30.1.0
+Hex Converter:   OH51.exe V2.7.0.0
+CPU DLL:         S8051.DLL V3.100.0.0
+Dialog DLL:      DP51.DLL V2.62.0.1 
+<h2>Project:</h2>
+D:\51\keil5\project\newsmartcar\Smartcar.uvproj
+Project File Date:  09/03/2022
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+main.c(21): warning C206: 'OLED_Init': missing function-prototype
+main.c(22): warning C206: 'OLED_Clear': missing function-prototype
+main.c(136): warning C206: 'follow': missing function-prototype
+main.c(146): warning C206: 'measure': missing function-prototype
+linking...
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?OLED_CLEAR?OLED
+    CALLER1: ?PR?INT0_ROUTINE?MAIN
+    CALLER2: ?C_C51STARTUP
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_OLED_SHOWCHINESE?OLED
+    CALLER1: ?PR?INT0_ROUTINE?MAIN
+    CALLER2: ?C_C51STARTUP
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_OLED_SHOWCHAR?OLED
+    CALLER1: ?PR?INT0_ROUTINE?MAIN
+    CALLER2: ?C_C51STARTUP
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_BUZZER?BUZZER
+    CALLER1: ?PR?INT0_ROUTINE?MAIN
+    CALLER2: ?C_C51STARTUP
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_DELAY?DELAY
+    CALLER1: ?PR?INT0_ROUTINE?MAIN
+    CALLER2: ?C_C51STARTUP
+Program Size: data=58.0 xdata=0 code=7799
+creating hex file from ".\Objects\Smartcar"...
+".\Objects\Smartcar" - 0 Error(s), 9 Warning(s).
+</pre>
+</body>
+</html>

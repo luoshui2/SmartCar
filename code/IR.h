@@ -9,6 +9,7 @@
 #define type2 0x18
 #define type3 0x5e
 #define type4 0x08
+#define type5 0x1c
 #define EQ 0x09
 void IR_Init();
 unsigned char IR_GetDataFlag();
